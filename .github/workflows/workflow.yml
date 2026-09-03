@@ -252,7 +252,7 @@ jobs:
     env:
       PYTORCH_INDEX: "https://download.pytorch.org/whl/cpu"
       DETECTRON2_DATASETS: ~/.torch/datasets
-      ARCH: arm64
+      ARCH: "arm64"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
