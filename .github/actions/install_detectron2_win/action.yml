@@ -1,4 +1,9 @@
 name: "Install Detectron2"
+inputs:
+  arch:
+    description: 'target CPU architecture: "x86_64" or "arm64"'
+    required: false
+    default: "x86_64"
 runs:
   using: composite
   steps:
@@ -8,7 +13,11 @@ runs:
       # Remove first, in case it's in the CI cache
       pip uninstall -y detectron2
 
-      pip install --progress-bar off -e .[all]
+      if [ "${{inputs.arch}}" = "arm64" ]; then
+        pip install --progress-bar off -e .
+      elif [ "${{inputs.arch}}" = "x86_64" ]; then
+        pip install --progress-bar off -e .[all]
+      fi
       python -m detectron2.utils.collect_env
 
       # TODO: this command fails because windows does not have wget
