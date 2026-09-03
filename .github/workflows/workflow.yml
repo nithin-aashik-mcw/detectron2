@@ -250,7 +250,6 @@ jobs:
             torchvision: "0.29.0"
             grpcio: "1.84.0"
     env:
-      PYTORCH_INDEX: "https://download.pytorch.org/whl/cpu"
       DETECTRON2_DATASETS: ~/.torch/datasets
     steps:
       - name: Checkout
@@ -268,7 +267,7 @@ jobs:
           torch-version: ${{matrix.torch}}
           torchvision-version: ${{matrix.torchvision}}
           grpcio-version: ${{matrix.grpcio}}
-          pytorch-index: $PYTORCH_INDEX
+          pytorch-index: "https://download.pytorch.org/whl/cpu"
           arch: arm64
 
       - name: Install Detectron2
