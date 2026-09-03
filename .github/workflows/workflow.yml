@@ -247,7 +247,7 @@ jobs:
         torch: ["2.14.0"]
         include:
           - torch: "2.14.0"
-            torchvision: "0.29.0"
+            torchvision: "0.29.0a0+cpu"
             grpcio: "1.84.0"
     env:
       PYTORCH_INDEX: "https://download.pytorch.org/whl/cpu"
