@@ -5,4 +5,4 @@ runs:
   - name: Run Unit Tests
     shell: bash
     run: |
-      echo TODO: unittest fails for now
+      python -m unittest discover -v -s ./tests
