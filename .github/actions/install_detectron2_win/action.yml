@@ -14,7 +14,7 @@ runs:
       pip uninstall -y detectron2
 
       if [ "${{inputs.arch}}" = "arm64" ]; then
-        pip install --progress-bar off -e .
+        pip install --progress-bar off -e . --no-build-isolation
       elif [ "${{inputs.arch}}" = "x86_64" ]; then
         pip install --progress-bar off -e .[all]
       fi
