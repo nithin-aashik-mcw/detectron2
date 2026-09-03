@@ -20,9 +20,13 @@ runs:
       shell: cmd
       run: |
         pip uninstall -y detectron2
+        vcpkg install geos:arm64-windows --x-install-root="${{ runner.temp }}\vcpkg_installed"
         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsarm64.bat"
+        set "GEOS_INCLUDE_PATH=${{ runner.temp }}\vcpkg_installed\arm64-windows\include"
+        set "GEOS_LIBRARY_PATH=${{ runner.temp }}\vcpkg_installed\arm64-windows\lib"
+        set "PATH=${{ runner.temp }}\vcpkg_installed\arm64-windows\bin;%PATH%"
         set DISTUTILS_USE_SDK=1
-        pip install --progress-bar off -e . --no-build-isolation
+        pip install --progress-bar off -e .[all] --no-build-isolation
         python -m detectron2.utils.collect_env
 
     # TODO: this command fails because Windows does not have wget
